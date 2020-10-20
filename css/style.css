@@ -129,9 +129,14 @@ img{
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .leader{
+  position: absolute;
+  top:40%;
+  left:50%;
   width: 50%;
-  height: 50%;
+  min-height: 50%;
   display:none;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
 }
 #lboard {
   font-family: "Trebuchet MS";
