@@ -66,6 +66,7 @@
     firebase.analytics();
     function addData(){
         if(submitdata){
+            alreadywon++
             var uname = document.getElementById('username').value;
             firebase.database().ref('score').push({
                 username:uname,
