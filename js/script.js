@@ -1,3 +1,4 @@
+var t = 0;
 var posarray = [];
 
 function randompos(){
@@ -35,7 +36,7 @@ for(let i=0;i<pos.length;i++){
     box.innerText = pos[i]
     box.style.left=`${(i%3)*33.33}%`;
     box.style.top=`${(parseInt(i/3))*33.33}%`;
-    box.style.backgroundColor = `#a2f${i+1}${i+1}${i+1}`;
+    box.style.backgroundColor = `#${i+1}${i+1}${i+1}`;
     //img.style.transform = `translate(${((pos[i]-1)%3)*(-33.33)}%, ${(parseInt((pos[i]-1)/3))*(-33.33)}%)`;
     document.getElementById('main').appendChild(box);
     //box.appendChild(img);
@@ -56,10 +57,6 @@ $(document).keyup(function() {
     }
 });
 
-var boxes = document.querySelector('img');
-for(let j=0;j<boxes.length;j++){
-    boxes[i].style.left
-}
 
 function move(){
     var empty_index = pos.indexOf('0');
@@ -86,11 +83,15 @@ function win_check(){
             return
         }
     }
-    alert("you won!")
-
+    document.getElementsByClassName('won')[0].style.display = 'flex'
+    Finaltime = ((performance.now()-t)/1000).toFixed(2);
 }
 
+
 function moveleft(){
+    if(t==0){
+        t = performance.now()
+    }
 	var empty_index = pos.indexOf('0');
     if(empty_index %3 != 2){
         var movable_box_index = empty_index+1;
@@ -99,10 +100,13 @@ function moveleft(){
         pos[movable_box_index]= '0';
         pos[empty_index] = movable_box_value;
         win_check()
-	}
+    }
 }
 
 function moveright(){
+    if(t==0){
+        t = performance.now()
+    }
 	var empty_index = pos.indexOf('0');
     if(empty_index %3 != 0){
         var movable_box_index = empty_index-1;
@@ -115,6 +119,9 @@ function moveright(){
 }
 
 function moveup(){
+    if(t==0){
+        t = performance.now()
+    }
     var empty_index = pos.indexOf('0');
     if(empty_index<=5){
         var movable_box_index = empty_index+3;
@@ -126,6 +133,9 @@ function moveup(){
 	}
 }
 function movedown(){   
+    if(t==0){
+        t = performance.now()
+    }
 	var empty_index = pos.indexOf('0');
     if(empty_index>=3){
         var movable_box_index = empty_index-3;
@@ -135,4 +145,28 @@ function movedown(){
         pos[empty_index] = movable_box_value;
         win_check()
 	}
+}
+
+if(window.innerWidth < 608){
+    document.querySelector('body').style.fontSize = `${window.innerWidth/620}em`;
+    if(window.innerHeight<(window.innerWidth)  ){
+        document.querySelector('body').style.fontSize = `${window.innerHeight/700}em`;
+    }
+}else{
+    document.querySelector('body').style.fontSize = "1em"
+}
+
+goBack = () =>{
+    document.getElementsByClassName('canvas')[0].style.display = 'flex'
+    document.getElementsByClassName('lbutton')[0].style.display = 'flex'
+    document.getElementsByClassName('lbutton1')[0].style.display = 'none'
+    document.getElementsByClassName('leader')[0].style.display = 'none'
+}
+cleartable = () => {
+    document.getElementById('lboard').innerHTML="";
+    document.getElementById('lboard').innerHTML=`
+        <th width="8%">Rank</th>
+        <th style="width:30%;">Username</th>
+        <th width="13%">Time</th>
+    `;
 }
