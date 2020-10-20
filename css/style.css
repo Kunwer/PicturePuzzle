@@ -10,11 +10,24 @@ body{
   justify-content: center;
   align-items: center;
 }
+button{
+  border: none;
+  color: white;
+  padding: 14px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
 .canvas{
     border: 2px solid black;
     height: 38em;
     width: 38em;
     box-shadow: 0 0 20px #222;
+    position: absolute;
 }
 .main{
     position: relative;
@@ -36,28 +49,46 @@ body{
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  color:white;
 }
 .won{
   position: absolute;
   background: rgba(red, green, blue, 0);
-  height: 100vh;
-  width: 100vw;
-  display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  padding: 1em;
+  background-color: white;
+  display:none;
   align-items: center;
   justify-content: center;
   font-size: 2em;
   font-family: monospace;
-  animation: fadeinout 3s forwards;
+  border-radius: .5em;
+  /*animation: fadeinout 3s forwards;*/
+}
+.won>input{
+  border: none;
+  padding: .5em;
+}
+.won>button{
+  padding: .5em;
+  border: none;
+  border-radius: .5em;
+  margin: .2em;
 }
 @keyframes fadeinout{
   0%{
     opacity: 0;
+    display: flex;
   }
   50%{
     opacity: 1;
+    display: flex;
   }
   100%{
     opacity: 0;
+    display: none;
   }
 }
 
@@ -69,3 +100,61 @@ img{
   -ms-user-select: none;
   height: 300%;
   }
+
+.lbutton,.lbutton1{
+  position: absolute;
+  top:0;
+  right:0;
+}
+.lbutton1{
+  display:none;
+  position: absolute;
+  top:0;
+  right:0;
+}
+.Leaderboard{
+  background-color: #555555;
+  color: white;
+  border-radius:4px;
+  border: 2px solid #555555;
+}
+
+.Leaderboard:hover{
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  border-radius:4px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.leader{
+  width: 50%;
+  height: 50%;
+  display:none;
+}
+#lboard {
+  font-family: "Trebuchet MS";
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 2px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #555555;
+  color: white;
+  border-radius: 2px;
+}
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+tr:hover{
+  background-color: #ddd;
+}
+td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 2px;
+}
