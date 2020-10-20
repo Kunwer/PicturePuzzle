@@ -18,7 +18,7 @@
     <div class='lbutton1'>
         <button class="Leaderboard" onclick='goBack();cleartable();'>Go Back</button>
     </div>
-    <div class="won">Your Name: <input id="username" type="text"/> <button onclick="addData()">Submit</button> </div>
+    <div class="won">Your Name: <input id="username" type="text"/> <button onclick="addData()" class="submit">Submit</button> </div>
     <div class = "leader">
         <table id="lboard"> 
             <tr>
@@ -65,12 +65,14 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     function addData(){
-    var uname = document.getElementById('username').value;
-    firebase.database().ref('score').push({
-        username:uname,
-        time:Finaltime
-        });
-    document.getElementsByClassName('won')[0].style.display = 'none'
+        if(submitdata){
+            var uname = document.getElementById('username').value;
+            firebase.database().ref('score').push({
+                username:uname,
+                time:Finaltime
+            });
+            document.getElementsByClassName('won')[0].style.display = 'none'
+        }
     }
     getData = () =>{
         var i = 1;
@@ -93,8 +95,32 @@
             });
         });
     };
-    </script>
+    var listusers = [];
+    firebase.database().ref('score').orderByChild('time').once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            listusers.push(childData.username);
+        });
+    });
+    var submitdata = false;
+    userinput = document.getElementById('username');
+    userinput.addEventListener('input',function(){
+        if(userinput.value!=""){
+            if(listusers.includes(userinput.value)==true){
+                userinput.style.border = 'red 2px solid';
+                submitdata = false;
+            }else{
+                userinput.style.border = '#00C851 2px solid';
+                submitdata = true;
+        }
+        }else{
+            userinput.style.border = 'black 2px solid';
+            submitdata = false;
+        }
 
+    });
+    </script>
     <!--end-->
 <script src='js/script.js'></script>
 </body>
