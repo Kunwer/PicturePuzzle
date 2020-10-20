@@ -84,7 +84,6 @@ function win_check(){
             return
         }
     }
-    alreadywon++
     document.getElementsByClassName('won')[0].style.display = 'flex'
     Finaltime = ((performance.now()-t)/1000).toFixed(2);
 }
