@@ -13,6 +13,7 @@ function randompos(){
 
 
 var pos = randompos();
+//var pos = ['1','2','3','4','5','6','7','8']
 for(let i=0;i<pos.length;i++){
     var box = document.createElement('div');
     box.setAttribute('class','smallbox');
@@ -73,7 +74,7 @@ function move(){
         moveleft();
     }
 }
-
+var alreadywon = 0
 function win_check(){
     let B = ['1','2','3','4','5','6','7','8','0']
     for(let i =0;i<B.length;i++){
@@ -83,6 +84,7 @@ function win_check(){
             return
         }
     }
+    alreadywon++
     document.getElementsByClassName('won')[0].style.display = 'flex'
     Finaltime = ((performance.now()-t)/1000).toFixed(2);
 }
@@ -157,10 +159,14 @@ if(window.innerWidth < 608){
 }
 
 goBack = () =>{
-    document.getElementsByClassName('canvas')[0].style.display = 'flex'
-    document.getElementsByClassName('lbutton')[0].style.display = 'flex'
-    document.getElementsByClassName('lbutton1')[0].style.display = 'none'
-    document.getElementsByClassName('leader')[0].style.display = 'none'
+    document.getElementsByClassName('canvas')[0].style.display = 'flex';
+    document.getElementsByClassName('lbutton')[0].style.display = 'flex';
+    document.getElementsByClassName('lbutton1')[0].style.display = 'none';
+    document.getElementsByClassName('leader')[0].style.display = 'none';
+    if(alreadywon!=0){
+        location.reload();
+    }
+    
 }
 cleartable = () => {
     document.getElementById('lboard').innerHTML="";
