@@ -70,7 +70,7 @@
             var uname = document.getElementById('username').value;
             firebase.database().ref('score').push({
                 username:uname,
-                time:Finaltime
+                time:parseFloat(Finaltime)
             });
             document.getElementsByClassName('won')[0].style.display = 'none'
         }
@@ -86,6 +86,7 @@
         snapshot.forEach(function(childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
+            console.log(typeof(childData.time));
             document.getElementById('lboard').innerHTML += `
                     <tr>
                     <td style="width:8%;">`+i+++`</td>

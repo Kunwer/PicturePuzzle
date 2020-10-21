@@ -85,7 +85,7 @@ function win_check(){
         }
     }
     document.getElementsByClassName('won')[0].style.display = 'flex'
-    Finaltime = ((performance.now()-t)/1000).toFixed(2);
+    Finaltime = parseFloat(((performance.now()-t)/1000).toFixed(2));
 }
 
 
