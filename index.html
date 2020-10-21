@@ -20,6 +20,9 @@
     </div>
     <div class="won">Your Name: <input id="username" type="text"/> <button onclick="addData()" class="submit">Submit</button> </div>
     <div class = "leader">
+        <div style="display: flex;justify-content: center;">
+            <h1 style="margin-top:35px;margin-bottom:8px;background-color: #555555;padding:10px;color:white;border-radius:4px;">Leaderboard</h1>
+        </div>
         <table id="lboard"> 
             <tr>
                 <th width="8%">Rank</th>
@@ -78,7 +81,7 @@
     getData = () =>{
         var i = 1;
         document.getElementsByClassName('canvas')[0].style.display = 'none'
-        document.getElementsByClassName('leader')[0].style.display = 'flex'
+        document.getElementsByClassName('leader')[0].style.display = 'block'
         document.getElementsByClassName('lbutton')[0].style.display = 'none'
         document.getElementsByClassName('lbutton1')[0].style.display = 'flex'
         document.getElementsByClassName('won')[0].style.display = 'none'
