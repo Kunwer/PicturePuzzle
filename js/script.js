@@ -1,15 +1,36 @@
 var t = 0;
 var posarray = [];
 
-function randompos(){
-  while(posarray.length < 8){
-    p = Math.floor(Math.random()*8)+1;
-    if(posarray.includes(p.toString()) != true){
-      posarray.push(p.toString());
-    };
-  };
-  return posarray;
-}
+function randompos() {
+    while (posarray.length < 8) {
+      let p = (Math.floor(Math.random() * 8) + 1).toString(); // Convert to string
+      if (!posarray.includes(p)) {
+        posarray.push(p);
+      }
+    }
+    
+    // Check if the generated permutation is solvable
+    if (!isSolvable(posarray)) {
+      // If not solvable, swap the last two elements to make it solvable
+      [posarray[6], posarray[7]] = [posarray[7], posarray[6]];
+    }
+  
+    return posarray;
+  }
+  
+  function isSolvable(arr) {
+    let inversionCount = 0;
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        if (parseInt(arr[i]) > parseInt(arr[j])) {
+          inversionCount++;
+        }
+      }
+    }
+    return inversionCount % 2 === 0; // Puzzle is solvable if inversion count is even
+  }
+  
+  
 
 
 var pos = randompos();
